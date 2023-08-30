@@ -35,6 +35,18 @@ class Weather extends Equatable {
         lastUpdate: DateTime.now());
   }
 
+  factory Weather.initial() {
+    return Weather(
+        descryption: '',
+        icon: '',
+        temp: 100.0,
+        tempMin: 100.0,
+        tempMax: 100.0,
+        name: '',
+        country: '',
+        lastUpdate: DateTime(1970));
+  }
+
   @override
   List<Object> get props {
     return [
