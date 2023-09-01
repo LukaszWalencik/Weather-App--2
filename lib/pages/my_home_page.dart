@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
+import 'package:weather_app2/pages/search_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,6 +19,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Weather'),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SearchPage()));
+              },
+              icon: Icon(Icons.search))
+        ],
+      ),
+      body: Center(
+        child: Text('Weather'),
+      ),
+    );
   }
 }
