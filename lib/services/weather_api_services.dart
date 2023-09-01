@@ -27,7 +27,7 @@ class WeatherApiServices {
         });
     try {
       final http.Response response = await httpClient.get(uri);
-      if (response != 200) {
+      if (response.statusCode != 200) {
         throw httpErrorHandler(response);
       }
       final responseBody = jsonDecode(response.body);
