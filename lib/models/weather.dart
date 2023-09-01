@@ -31,7 +31,7 @@ class Weather extends Equatable {
         temp: main['temp'],
         tempMin: main['temp_min'],
         tempMax: main['temp_max'],
-        name: 'name',
+        name: json['name'],
         country: sys['country'],
         lastUpdate: DateTime.now());
   }
