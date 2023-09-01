@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 
 class Weather extends Equatable {
-  final String descryption;
+  final String description;
   final String icon;
   final double temp;
   final double tempMin;
@@ -11,7 +11,7 @@ class Weather extends Equatable {
   final String country;
   final DateTime lastUpdate;
   Weather({
-    required this.descryption,
+    required this.description,
     required this.icon,
     required this.temp,
     required this.tempMin,
@@ -24,20 +24,21 @@ class Weather extends Equatable {
   factory Weather.fromJson(Map<String, dynamic> json) {
     final weather = json['weather'][0];
     final main = json['main'];
+    final sys = json['sys'];
     return Weather(
-        descryption: weather['descryption'],
+        description: weather['description'],
         icon: weather['icon'],
         temp: main['temp'],
         tempMin: main['temp_min'],
         tempMax: main['temp_max'],
-        name: '',
-        country: '',
+        name: 'name',
+        country: sys['country'],
         lastUpdate: DateTime.now());
   }
 
   factory Weather.initial() {
     return Weather(
-        descryption: '',
+        description: '',
         icon: '',
         temp: 100.0,
         tempMin: 100.0,
@@ -50,7 +51,7 @@ class Weather extends Equatable {
   @override
   List<Object> get props {
     return [
-      descryption,
+      description,
       icon,
       temp,
       tempMin,
@@ -65,7 +66,7 @@ class Weather extends Equatable {
   bool get stringify => true;
 
   Weather copyWith({
-    String? descryption,
+    String? description,
     String? icon,
     double? temp,
     double? tempMin,
@@ -75,7 +76,7 @@ class Weather extends Equatable {
     DateTime? lastUpdate,
   }) {
     return Weather(
-      descryption: descryption ?? this.descryption,
+      description: description ?? this.description,
       icon: icon ?? this.icon,
       temp: temp ?? this.temp,
       tempMin: tempMin ?? this.tempMin,
