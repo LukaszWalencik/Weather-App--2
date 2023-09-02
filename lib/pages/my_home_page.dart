@@ -51,6 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
             child: CircularProgressIndicator(),
           );
         }
+        if (state.status == WeatherStatus.error && state.weather.name == '') {
+          return Center(
+            child: Text(
+              'Select a city',
+              style: TextStyle(fontSize: 20),
+            ),
+          );
+        }
         return Center(
           child: Text(state.weather.name),
         );
