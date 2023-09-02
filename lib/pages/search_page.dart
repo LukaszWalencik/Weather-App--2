@@ -11,6 +11,18 @@ class _SearchPageState extends State<SearchPage> {
   final _formKey = GlobalKey<FormState>();
   String? _city;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  void _submit() {
+    setState(() {
+      autovalidateMode = AutovalidateMode.always;
+    });
+    final form = _formKey.currentState;
+    if (form != null && form.validate()) {
+      form.save();
+      Navigator.pop(context, _city!.trim());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: _submit,
               child: Text(
                 "How's weather?",
                 style: TextStyle(fontSize: 20),
