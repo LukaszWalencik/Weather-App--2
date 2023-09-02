@@ -11,11 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<WeatherCubit>().fetchWeather('London');
-  }
+  String? _city;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               onPressed: () async {
-                await Navigator.of(context).push(
+                _city = await Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SearchPage()));
               },
               icon: Icon(Icons.search))
