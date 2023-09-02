@@ -24,6 +24,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 _city = await Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SearchPage()));
                 print('City: $_city');
+                if (_city != null) {
+                  context.read<WeatherCubit>().fetchWeather(_city!);
+                }
               },
               icon: Icon(Icons.search))
         ],
