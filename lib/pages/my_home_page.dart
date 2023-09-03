@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final formattedString = descryption.titleCase;
     return Text(
       formattedString,
-      style: TextStyle(fontSize: 30),
+      style: TextStyle(fontSize: 24),
       textAlign: TextAlign.center,
     );
   }
@@ -140,8 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Spacer(),
                 showIcon(state.weather.icon),
-                formatText(state.weather.description),
+                Expanded(flex: 3, child: formatText(state.weather.description)),
+                Spacer()
               ],
             )
           ],
