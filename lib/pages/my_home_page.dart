@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recase/recase.dart';
 import 'package:weather_app2/constants/constants.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
@@ -43,10 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget showIcon(String icon) {
     return FadeInImage.assetNetwork(
-      placeholder: 'Loading icon',
+      placeholder: 'assets/loading.gif',
       image: 'http://$kIconHost/img/wn/$icon@4x.png',
       width: 96,
       height: 96,
+    );
+  }
+
+  Widget formatText(String descryption) {
+    final formattedString = descryption.titleCase;
+    return Text(
+      formattedString,
+      style: TextStyle(fontSize: 30),
+      textAlign: TextAlign.center,
     );
   }
 
@@ -129,7 +139,10 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [],
+              children: [
+                showIcon(state.weather.icon),
+                formatText(state.weather.description),
+              ],
             )
           ],
         );
