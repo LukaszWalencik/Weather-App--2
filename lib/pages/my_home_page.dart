@@ -41,6 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return temperature.toStringAsFixed(1) + '℃';
   }
 
+  Widget showIcon(String icon) {
+    return FadeInImage.assetNetwork(
+      placeholder: 'Loading icon',
+      image: 'http://$kIconHost/img/wn/$icon@4x.png',
+      width: 96,
+      height: 96,
+    );
+  }
+
   Widget _showWeather() {
     return BlocConsumer<WeatherCubit, WeatherState>(
       builder: (context, state) {
