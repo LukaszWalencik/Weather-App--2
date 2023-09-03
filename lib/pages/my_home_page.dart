@@ -4,6 +4,7 @@ import 'package:recase/recase.dart';
 import 'package:weather_app2/constants/constants.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
+import 'package:weather_app2/pages/settings.dart';
 import 'package:weather_app2/widgets/error_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -23,15 +24,24 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Weather'),
         actions: [
           IconButton(
-              onPressed: () async {
-                _city = await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SearchPage()));
-                print('City: $_city');
-                if (_city != null) {
-                  context.read<WeatherCubit>().fetchWeather(_city!);
-                }
-              },
-              icon: Icon(Icons.search))
+            onPressed: () async {
+              _city = await Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => SearchPage()));
+              print('City: $_city');
+              if (_city != null) {
+                context.read<WeatherCubit>().fetchWeather(_city!);
+              }
+            },
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => SettingsPage(),
+              ),
+            ),
+            icon: Icon(Icons.settings),
+          ),
         ],
       ),
       body: _showWeather(),
