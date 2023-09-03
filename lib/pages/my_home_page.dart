@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recase/recase.dart';
 import 'package:weather_app2/constants/constants.dart';
+import 'package:weather_app2/cubits/temp_settings/temp_settings_cubit.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
 import 'package:weather_app2/pages/settings.dart';
@@ -49,7 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String showTemperature(double temperature) {
-    return temperature.toStringAsFixed(1) + '℃';
+    final tempUnit = context.watch<TempSettingsCubit>().state.tempUnit;
+    if (tempUnit == TempUnit.celsius) {
+      return temperature.toStringAsFixed(1) + '℃';
+    } else {
+      return ((temperature * 9 / 5) + 32).toStringAsFixed(1);
+    }
   }
 
   Widget showIcon(String icon) {
