@@ -26,6 +26,7 @@ class WeatherApiServices {
           'appid': dotenv.env['APPID']
         });
     try {
+      print(uri);
       final http.Response response = await httpClient.get(uri);
       if (response.statusCode != 200) {
         throw httpErrorHandler(response);
@@ -53,6 +54,7 @@ class WeatherApiServices {
           'appid': dotenv.env['APPID']
         });
     try {
+      print(uri);
       http.Response response = await httpClient.get(uri);
       if (response.statusCode != 200) {
         throw Exception(httpErrorHandler(response));
