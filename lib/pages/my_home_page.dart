@@ -60,8 +60,59 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         }
-        return Center(
-          child: Text(state.weather.name),
+        return ListView(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 6,
+            ),
+            Text(
+              state.weather.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  TimeOfDay.fromDateTime(state.weather.lastUpdate)
+                      .format(context),
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '(${state.weather.country})',
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  state.weather.temp.toString(),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: 20),
+                Column(
+                  children: [
+                    Text(
+                      state.weather.tempMax.toString(),
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      state.weather.tempMin.toString(),
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                )
+              ],
+            )
+          ],
         );
       },
       listener: (context, state) {
