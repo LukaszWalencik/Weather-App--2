@@ -1,10 +1,28 @@
 part of 'temp_settings_bloc.dart';
 
-sealed class TempSettingsState extends Equatable {
-  const TempSettingsState();
-  
-  @override
-  List<Object> get props => [];
-}
+enum TempUnit { celsius, fahrenheit }
 
-final class TempSettingsInitial extends TempSettingsState {}
+class TempSettingsState extends Equatable {
+  final TempUnit tempUnit;
+  TempSettingsState({
+    this.tempUnit = TempUnit.celsius,
+  });
+
+  factory TempSettingsState.initial() {
+    return TempSettingsState();
+  }
+
+  @override
+  List<Object> get props => [tempUnit];
+
+  @override
+  bool get stringify => true;
+
+  TempSettingsState copyWith({
+    TempUnit? tempUnit,
+  }) {
+    return TempSettingsState(
+      tempUnit: tempUnit ?? this.tempUnit,
+    );
+  }
+}
