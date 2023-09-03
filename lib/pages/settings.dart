@@ -5,6 +5,18 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Setting'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: ListTile(
+          title: Text('Temperature Unit'),
+          subtitle: Text('Celcius/Fahrenheit (Default: Celsius)'),
+          trailing: Switch(value: true, onChanged: (_) {}),
+        ),
+      ),
+    );
   }
 }
