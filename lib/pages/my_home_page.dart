@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app2/constants/constants.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
 import 'package:weather_app2/widgets/error_dialog.dart';
@@ -34,6 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _showWeather(),
     );
+  }
+
+  String showTemperature(double temperature) {
+    return temperature.toStringAsFixed(1) + '℃';
   }
 
   Widget _showWeather() {
@@ -91,26 +96,31 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  state.weather.temp.toString(),
+                  showTemperature(state.weather.temp),
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(width: 20),
                 Column(
                   children: [
                     Text(
-                      state.weather.tempMax.toString(),
+                      showTemperature(state.weather.tempMax),
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      state.weather.tempMin.toString(),
+                      showTemperature(state.weather.tempMin),
                       style: TextStyle(fontSize: 16),
                     )
                   ],
                 )
               ],
+            ),
+            SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [],
             )
           ],
         );
