@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (tempUnit == TempUnit.celsius) {
       return temperature.toStringAsFixed(1) + '℃';
     } else {
-      return ((temperature * 9 / 5) + 32).toStringAsFixed(1);
+      return ((temperature * 9 / 5) + 32).toStringAsFixed(1) + '℉';
     }
   }
 
