@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
+import 'package:weather_app2/widgets/error_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -65,14 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       listener: (context, state) {
         if (state.status == WeatherStatus.error) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(state.error.errorMessage),
-              );
-            },
-          );
+          errorDialog(context, state.error.errorMessage);
         }
       },
     );
