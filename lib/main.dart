@@ -24,16 +24,16 @@ class MyApp extends StatelessWidget {
           weatherApiServices: WeatherApiServices(httpClient: http.Client())),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<WeatherCubit>(
-            create: (context) => WeatherCubit(
+          BlocProvider<WeatherBloc>(
+            create: (context) => WeatherBloc(
                 weatherRepository: context.read<WeatherRepository>()),
           ),
-          BlocProvider<TempSettingsCubit>(
-            create: (context) => TempSettingsCubit(),
+          BlocProvider<TempSettingsBloc>(
+            create: (context) => TempSettingsBloc(),
           ),
-          BlocProvider<ThemeCubit>(create: (context) => ThemeCubit())
+          BlocProvider<ThemeBloc>(create: (context) => ThemeBloc())
         ],
-        child: BlocBuilder<ThemeCubit, ThemeState>(
+        child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             return MaterialApp(
               title: 'Weather App',
