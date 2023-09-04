@@ -67,6 +67,8 @@ flutter:
   assets:
     -  .env
     - assets/loading.gif
+    - assets/loading_light_mode.gif
+    - assets/loading_dark_mode.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
