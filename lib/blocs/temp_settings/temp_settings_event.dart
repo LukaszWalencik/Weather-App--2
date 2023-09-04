@@ -6,3 +6,5 @@ sealed class TempSettingsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ToggleTempUnitEvent extends TempSettingsEvent {}
