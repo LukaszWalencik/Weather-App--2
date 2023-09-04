@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recase/recase.dart';
+import 'package:weather_app2/blocs/theme/theme_bloc.dart';
 import 'package:weather_app2/constants/constants.dart';
 import 'package:weather_app2/cubits/temp_settings/temp_settings_cubit.dart';
 import 'package:weather_app2/cubits/weather/weather_cubit.dart';
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   .push(MaterialPageRoute(builder: (context) => SearchPage()));
               print('City: $_city');
               if (_city != null) {
-                context.read<WeatherCubit>().fetchWeather(_city!);
+                context.read<WeatherBloc>().fetchWeather(_city!);
               }
             },
             icon: Icon(Icons.search),
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String showTemperature(double temperature) {
-    final tempUnit = context.watch<TempSettingsCubit>().state.tempUnit;
+    final tempUnit = context.watch<TempSettingsBloc>().state.tempUnit;
     if (tempUnit == TempUnit.celsius) {
       return temperature.toStringAsFixed(1) + '℃';
     } else {
@@ -59,12 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget showIcon(String icon) {
-    return FadeInImage.assetNetwork(
-      placeholder: 'assets/loading.gif',
-      image: 'http://$kIconHost/img/wn/$icon@4x.png',
-      width: 96,
-      height: 96,
-    );
+    if (context.watch<ThemeBloc>().state.appTheme == ThemeData.light()) {
+      return FadeInImage.assetNetwork(
+        placeholder: 'assets/loading_light_mode.gif',
+        image: 'http://$kIconHost/img/wn/$icon@4x.png',
+        width: 96,
+        height: 96,
+      );
+    } else {
+      return FadeInImage.assetNetwork(
+        placeholder: 'assets/loading_dark_mode.gif',
+        image: 'http://$kIconHost/img/wn/$icon@4x.png',
+        width: 96,
+        height: 96,
+      );
+    }
   }
 
   Widget formatText(String descryption) {
@@ -77,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _showWeather() {
-    return BlocConsumer<WeatherCubit, WeatherState>(
+    return BlocConsumer<WeatherBloc, WeatherState>(
       builder: (context, state) {
         if (state.status == WeatherStatus.initial) {
           return Center(

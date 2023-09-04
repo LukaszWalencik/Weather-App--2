@@ -20,20 +20,20 @@ class SettingsPage extends StatelessWidget {
               title: Text('Temperature Unit'),
               subtitle: Text('Celcius/Fahrenheit (Default: Celsius)'),
               trailing: Switch(
-                  value: context.watch<TempSettingsCubit>().state.tempUnit ==
+                  value: context.watch<TempSettingsBloc>().state.tempUnit ==
                       TempUnit.celsius,
                   onChanged: (_) {
-                    context.read<TempSettingsCubit>().toggleTempUnit();
+                    context.read<TempSettingsBloc>().toggleTempUnit();
                   }),
             ),
             ListTile(
               title: Text('Theme mode'),
               subtitle: Text('Light/Dark (Default: Light)'),
               trailing: Switch(
-                  value: context.watch<ThemeCubit>().state.appTheme ==
+                  value: context.watch<ThemeBloc>().state.appTheme ==
                       AppTheme.light,
                   onChanged: (_) {
-                    context.read<ThemeCubit>().toggleTheme();
+                    context.read<ThemeBloc>().toggleTheme();
                   }),
             ),
           ],
