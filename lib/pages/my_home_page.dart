@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recase/recase.dart';
+import 'package:weather_app2/blocs/temp_settings/temp_settings_bloc.dart';
 import 'package:weather_app2/blocs/theme/theme_bloc.dart';
+import 'package:weather_app2/blocs/weather/weather_bloc.dart';
 import 'package:weather_app2/constants/constants.dart';
-import 'package:weather_app2/cubits/temp_settings/temp_settings_cubit.dart';
-import 'package:weather_app2/cubits/weather/weather_cubit.dart';
 import 'package:weather_app2/pages/search_page.dart';
 import 'package:weather_app2/pages/settings.dart';
 import 'package:weather_app2/widgets/error_dialog.dart';
@@ -31,7 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   .push(MaterialPageRoute(builder: (context) => SearchPage()));
               print('City: $_city');
               if (_city != null) {
-                context.read<WeatherBloc>().fetchWeather(_city!);
+                context
+                    .read<WeatherBloc>()
+                    .add(FetchWeatherEvent(city: _city!));
               }
             },
             icon: Icon(Icons.search),

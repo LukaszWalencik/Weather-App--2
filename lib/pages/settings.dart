@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app2/cubits/temp_settings/temp_settings_cubit.dart';
-import 'package:weather_app2/cubits/theme/theme_cubit.dart';
+import 'package:weather_app2/blocs/temp_settings/temp_settings_bloc.dart';
+import 'package:weather_app2/blocs/theme/theme_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
                   value: context.watch<TempSettingsBloc>().state.tempUnit ==
                       TempUnit.celsius,
                   onChanged: (_) {
-                    context.read<TempSettingsBloc>().toggleTempUnit();
+                    context.read<TempSettingsBloc>().add(ToggleTempUnitEvent());
                   }),
             ),
             ListTile(
@@ -33,7 +33,7 @@ class SettingsPage extends StatelessWidget {
                   value: context.watch<ThemeBloc>().state.appTheme ==
                       AppTheme.light,
                   onChanged: (_) {
-                    context.read<ThemeBloc>().toggleTheme();
+                    context.read<ThemeBloc>().add(ChangeThemeEvent());
                   }),
             ),
           ],

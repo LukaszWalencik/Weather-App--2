@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_app2/cubits/temp_settings/temp_settings_cubit.dart';
-import 'package:weather_app2/cubits/theme/theme_cubit.dart';
-import 'package:weather_app2/cubits/weather/weather_cubit.dart';
+import 'package:weather_app2/blocs/temp_settings/temp_settings_bloc.dart';
+import 'package:weather_app2/blocs/theme/theme_bloc.dart';
+import 'package:weather_app2/blocs/weather/weather_bloc.dart';
 import 'package:weather_app2/pages/my_home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app2/repositories/weather_repository.dart';
